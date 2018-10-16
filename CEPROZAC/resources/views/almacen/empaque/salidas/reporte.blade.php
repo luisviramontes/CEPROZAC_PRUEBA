@@ -1,4 +1,4 @@
-@inject('metodo','CEPROZAC\Http\Controllers\EntradasAlmacenLimpiezaController')
+@inject('metodo','CEPROZAC\Http\Controllers\entradasempaquescontroller')
 @extends('layouts.principal')
 @section('contenido')
 <div class="pull-left breadcrumb_admin clear_both">

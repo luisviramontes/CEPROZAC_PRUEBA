@@ -12,11 +12,11 @@
             </div><!--/porlets-content--> 
           </div><!--/block-web--> 
         </div>
-      </section>
+      </section> 
     </div>
     <div class="modal-footer" style="margin-top: -10px;">
       <div class="row col-md-5 col-md-offset-7" style="margin-top: -5px;">
-        <form action="{{url('almacen/salidas/limpieza', [$salidas->idSalida])}}" method="POST"> 
+        <form action="{{url('almacen/salidas/material', [$salidas->idSalida])}}" method="POST"> 
          <input type="hidden" name="_method" value="DELETE">
          <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

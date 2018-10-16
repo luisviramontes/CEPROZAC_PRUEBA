@@ -156,7 +156,7 @@ class salidaalmacenmaterialController extends Controller
 
           }
         //
-          return redirect('/almacen/materiales/salidas');
+          return redirect('/almacen/salidas/material');
         }
 
     /**
@@ -280,7 +280,7 @@ class salidaalmacenmaterialController extends Controller
 
           }
 
-          return redirect('almacen/materiales/salidas');
+          return redirect('almacen/salidas/material');
         //
         }
     /**
@@ -303,10 +303,10 @@ class salidaalmacenmaterialController extends Controller
         //$elimina->delete();PENDIENTE CHECAR SI SE ELIMINA O SE QUEDA
         # code...
     }
-    $entrada = salidasalmacenmaterial::findOrFail($id);
+    $entrada = SalidaAlmacenMaterial::findOrFail($id);
     $entrada->estado="Inactivo";
     $entrada->update();
-  return Redirect::to('/almacen/materiales/salidas');   
+return redirect('almacen/salidas/material');   
 
         //
 }
@@ -336,7 +336,7 @@ class salidaalmacenmaterialController extends Controller
          });
         })->export('xls');
       }
-            public function verentradamaterial($id){
+            public function versalidamaterial($id){
        $salidas=DB::table('detalles_salidas_materiales')->where('detalles_salidas_materiales.idSalidaMaterial','=',$id)
        ->join('almacenmateriales as a', 'detalles_salidas_materiales.id_material', '=', 'a.id')
        ->join('salidasalmacenmaterial as e', 'detalles_salidas_materiales.idSalidaMaterial', '=', 'e.id')
@@ -357,9 +357,9 @@ class salidaalmacenmaterialController extends Controller
 
        return view("almacen.materiales.salidas.reporte",["salidas"=>$salidas,'salida'=>$salida]);
 
-     }
+     } 
 
-     public function pdfentradamaterial ($id) {
+     public function pdfsalidamaterial ($id) {
      $salidas=DB::table('detalles_salidas_materiales')->where('detalles_salidas_materiales.idSalidaMaterial','=',$id)
        ->join('almacenmateriales as a', 'detalles_salidas_materiales.id_material', '=', 'a.id')
        ->join('salidasalmacenmaterial as e', 'detalles_salidas_materiales.idSalidaMaterial', '=', 'e.id')

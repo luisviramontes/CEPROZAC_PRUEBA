@@ -1,4 +1,4 @@
-@inject('metodo','CEPROZAC\Http\Controllers\EntradasAgroquimicosController')
+@inject('metodo','CEPROZAC\Http\Controllers\entradasempaquescontroller')
 <!DOCTYPE html>
 <html lang="en">
 <head>

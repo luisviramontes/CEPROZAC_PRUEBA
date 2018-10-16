@@ -192,8 +192,9 @@ Route::resource('almacen/materiales/salidas','SalidaAlmacenMaterialController');
 
 Route::get('verentradamaterial/{id}', array('as'=> '/verentradamaterial','uses'=>'EntradaAlmacenController@verentradamaterial'));
 Route::get('pdfentradamaterial/{id}', array('as'=> '/pdfentradamaterial','uses'=>'EntradaAlmacenController@pdfentradamaterial'));
-Route::get('versalidarefaccion/{id}', array('as'=> '/versalidarefaccion','uses'=>'SalidasAlmacenLimpiezaController@versalidarefaccion'));
-Route::get('pdfsalidarefaccion/{id}', array('as'=> '/pdfsalidarefaccion','uses'=>'SalidasAlmacenLimpiezaController@pdfsalidarefaccion'));
+
+Route::get('versalidamaterial/{id}', array('as'=> '/versalidamaterial','uses'=>'SalidaAlmacenMaterialController@versalidamaterial'));
+Route::get('pdfsalidamaterial/{id}', array('as'=> '/pdfsalidamaterial','uses'=>'SalidaAlmacenMaterialController@pdfsalidamaterial'));
 
 /////
 

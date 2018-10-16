@@ -1,4 +1,4 @@
-@inject('metodo','CEPROZAC\Http\Controllers\EntradasAlmacenLimpiezaController')
+@inject('metodo','CEPROZAC\Http\Controllers\EntradaAlmacenController')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +19,7 @@
       <div><span>DOMICILIO: </span>{{$entrada->ProvedorDireccion}}</div> 
       <div><span>EMAIL: </span> <a href="{{$entrada->ProvedorEmail}}">{{$entrada->ProvedorEmail}}</a></div>
       <div><span>TEL: </span>{{$entrada->ProvedorTelefono}}</div>
-    </div>
+    </div> 
  
     <div id="project2" align="right" >
       <div><span>FACTURA: </span> {{$entrada->factura}}</div>

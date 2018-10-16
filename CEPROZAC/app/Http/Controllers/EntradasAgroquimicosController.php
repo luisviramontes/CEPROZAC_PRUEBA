@@ -137,15 +137,15 @@ class EntradasAgroquimicosController extends Controller
           return response()->json(["valid" => true], 200);
         }
         else{
-
+  
           $material= new entradasagroquimicos;
           $material->provedor=$formulario->get('prov');
           $material->fecha=$formulario->get('fecha');
           $material->factura=$formulario->get('factura');
           $material->comprador=$formulario->get('recibio');
           $material->moneda=$formulario->get('moneda');
-          $material->entregado=$formulario->get('entregado_a');
-          $material->recibe_alm=$formulario->get('recibe_alm');
+          $material->entregado=$formulario->get('entrega');
+          $material->recibe_alm=$formulario->get('recibe');
           $material->observacionesc=$formulario->get('observacionesq');
           $material->estado="Activo";
           $material->save();
@@ -273,8 +273,8 @@ class EntradasAgroquimicosController extends Controller
       $material->factura=$request->get('factura');
       $material->comprador=$request->get('recibio');
       $material->moneda=$request->get('moneda');
-      $material->entregado=$request->get('entregado_a');
-      $material->recibe_alm=$request->get('recibe_alm');
+      $material->entregado=$request->get('entrega');
+      $material->recibe_alm=$request->get('recibe');
       $material->observacionesc=$request->get('observacionesq');
       $material->update();
 
@@ -570,7 +570,7 @@ $material=DB::table('almacenagroquimicos')->where('almacenagroquimicos.estado','
  }
 
 
- public function invoice($id) 
+ public function pdfentradaAgroquimicos($id) 
  {
 
    $data2 =DB::table('detalles_entradas_agroquimicos')

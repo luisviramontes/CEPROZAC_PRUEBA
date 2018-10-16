@@ -74,13 +74,13 @@
                  <td>{{$salidas->Fechasalida}} </td>
                  <td>  
                   <center>
-                    <a href="{{URL::action('EntradaAlmacenController@verentradamaterial',$salidas->idSalida)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
+                    <a href="{{URL::action('SalidaAlmacenMaterialController@versalidamaterial',$salidas->idSalida)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
  
                   </center>
                 </td>              
                 <td> 
                   <center>
-                    <a href="{{URL::action('EntradaAlmacenController@edit',$salidas->idSalida)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
+                    <a href="{{URL::action('SalidaAlmacenMaterialController@edit',$salidas->idSalida)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
                   </center>
                 </td>
                 <td> <a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$salidas->idSalida}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a>

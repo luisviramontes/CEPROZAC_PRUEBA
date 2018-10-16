@@ -22,7 +22,7 @@ use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use Illuminate\Support\Collection as Collection;  
 
-
+ 
 class salidasagroquimicosController extends Controller
 {
     /**
@@ -316,8 +316,10 @@ class salidasagroquimicosController extends Controller
         //
 }
 
-public function excel()
-{        
+
+
+        public function excel()
+  {         
         /**
          * toma en cuenta que para ver los mismos 
          * datos debemos hacer la misma consulta
@@ -325,17 +327,21 @@ public function excel()
         Excel::create('salidasagroquimicos', function($excel) {
           $excel->sheet('Excel sheet', function($sheet) {
                 //otra opción -> $products = Product::select('name')->get();
-            $salidas = salidasagroquimicos::where('salidasagroquimicos.estado','=','Activo')->join('almacenagroquimicos','almacenagroquimicos.id', '=', 'salidasagroquimicos.id_material')
-            ->join('empleados as e', 'salidasagroquimicos.entrego', '=', 'e.id')
-            ->join('empleados as emp', 'salidasagroquimicos.recibio', '=', 'emp.id')
-            ->select('salidasagroquimicos.id', 'almacenagroquimicos.nombre','salidasagroquimicos.medidaaux', 'salidasagroquimicos.cantidad','almacenagroquimicos.medida', 'salidasagroquimicos.destino','salidasagroquimicos.modulos_aplicados', 'e.nombre as empnom','e.apellidos as ape1','emp.nombre as empmom2','emp.apellidos as ape2','salidasagroquimicos.tipo_movimiento','salidasagroquimicos.fecha')
-            ->get();       
-            $sheet->fromArray($salidas);
-            $sheet->row(1,['N° de Salida','Material','Cantidad','Cantidad Total','Unidad Medida','Destino','Módulos Aplicados','Entrego','Apellidos','Recibio','Apellidos','Tipo de Movimiento','Fecha']);
-            $sheet->setOrientation('landscape');
-          });
+           $salida=DetallesSalidasAgroquimicos::
+           join('almacenagroquimicos as a', 'detalles_salidas_agroquimicos.id_material', '=', 'a.id')
+           ->join('unidades_medidas as u', 'a.idUnidadMedida', '=', 'u.id')
+           ->join('nombre_unidades_medidas as n', 'u.idUnidadMedida', '=', 'n.id')
+           ->join('salidasagroquimicos as e', 'detalles_salidas_agroquimicos.idSalidasAgroquimicos', '=', 'e.id')
+           ->join('empleados as Empleado1', 'e.entrego', '=', 'Empleado1.id')
+           ->join('empleados as Empleado2', 'e.recibio', '=', 'Empleado2.id')
+           ->select('detalles_salidas_agroquimicos.idSalidasAgroquimicos as IdEntrada','a.nombre as nombreMaterial','detalles_salidas_agroquimicos.cantidad as cantidadUnidad','n.nombreUnidadMedida as nombreUnidadMedida','e.fecha as FechaCompra','Empleado1.nombre as NombreEmp1','Empleado1.apellidos as Ape1','Empleado2.nombre','Empleado2.apellidos','e.tipo_movimiento as Observaciónes','e.destino','e.modulos_aplicados')->get();       
+           $sheet->fromArray($salida);
+           $sheet->row(1,['N°Salida','Material','Cantidad','Medida' ,'Fecha',"Entrego","Apellidos","Recibe en Almacén CEPROZAC","Apellidos",'Observaciónes','Destino','Módulos']);
+           $sheet->setOrientation('landscape');
+         });
         })->export('xls');
       }
+
 
       public function verSalidaAgroquimicos($id){
          $salidas=DB::table('detalles_salidas_agroquimicos')->where('detalles_salidas_agroquimicos.idSalidasAgroquimicos','=',$id)

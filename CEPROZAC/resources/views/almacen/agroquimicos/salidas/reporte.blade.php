@@ -17,7 +17,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="block-web">
-				<div class="header">
+				<div class="header"> 
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>
@@ -30,8 +30,7 @@
 									 <a class="btn btn-sm btn-success tooltips" href="{{ route('almacen.salidas.agroquimicos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Salida"> <i class="fa fa-plus"></i> Registrar Salida de Almacén</a>
 
 									<a class="btn btn-sm btn-danger tooltips" href="/almacen/salidas/agroquimicos" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-times"></i> Salir</a> 
-
-									<a class="btn btn-sm btn btn-info" href="{{URL::action('pdfentradaAgroquimicos@invoice',$salidas->idSalida)}}" target="_blank" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Entrada"> <i class="fa fa-print"></i>Imprimir Reporte</a>
+									<a class="btn btn-sm btn btn-info" href="{{URL::action('SalidasAgroquimicosController@pdfsalidaAgroquimicos',$salidas->idSalida)}}" target="_blank" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Entrada"> <i class="fa fa-print"></i>Imprimir Reporte</a>
 
 								</div> 
 							</b>

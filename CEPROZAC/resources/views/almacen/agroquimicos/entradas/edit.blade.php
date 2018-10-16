@@ -102,7 +102,7 @@
      <div class="form-group">
       <label class="col-sm-3 control-label">Entregado a : <strog class="theme_color">*</strog></label>
       <div class="col-sm-6">
-        <select name="entregado_a" id="entregado_a" value=""  class="form-control select2" required>  
+        <select name="entrega" id="entrega" class="form-control select2" required>  
 
          @foreach($empleado as $emp)
 
@@ -123,7 +123,7 @@
    <div class="form-group">
     <label class="col-sm-3 control-label">Recibe en Almacén CEPROZAC : <strog class="theme_color">*</strog></label>
     <div class="col-sm-6">
-      <select name="recibe_alm" id="recibe_alm" value=""  class="form-control select2" required>  
+      <select name="recibe" id="recibe" value=""  class="form-control select2" required>  
        @foreach($empleado as $emp)
 
        @if($emp->id == $entrada->recibe_alm)
@@ -155,16 +155,6 @@
   </div>
 </div>
 
-<div class="form-group"> 
-  <label class="col-sm-3 control-label">% IVA<strog class="theme_color">* </strog></label>
-  <div class="col-sm-3">
-    <input name="iva" id="iva" value="0" type="text" class="form-control" min="0" max="100" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IVA del Producto" />
-  </div>    
-  <label class="col-sm-1 control-label">% IEPS<strog class="theme_color">* </strog></label>
-  <div class="col-sm-3">
-    <input name="ieps" id="ieps" value="0" type="text" class="form-control" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IEPS del Producto" />
-  </div> 
-</div>
 
 <div class="form-group">
  <label class="col-sm-3 control-label">Tipo de Moneda: <strog class="theme_color">*</strog></label>
@@ -246,7 +236,21 @@
         <input name="preciou" id="preciou" value="0" type="number" class="form-control" />
         <span id="errorprecio" style="color:#FF0000;"></span>
       </div>    
-    </div>    
+    </div>  
+    <div class="col-sm-1">
+       <div class="form-group"> 
+        <label for="preciou">% IVA </label>
+         <input name="iva" id="iva" value="0" type="text" class="form-control" min="0" max="100" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IVA del Producto" />
+        <span id="errorprecio" style="color:#FF0000;"></span>
+      </div>    
+    </div>   
+              <div class="col-sm-1">
+       <div class="form-group"> 
+        <label for="preciou">% IEPS </label>
+       <input name="ieps" id="ieps" value="0" type="text" class="form-control" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IEPS del Producto" />
+        <span id="errorprecio" style="color:#FF0000;"></span>
+      </div>    
+    </div>     
 
 
   </div>
@@ -565,15 +569,14 @@ function llenado(){
  document.getElementById("errorUnidad").innerHTML = "";
  var provedorv =  document.getElementById('prov').value;
  var empresav =  document.getElementById('recibio').value;
- var entregadov = document.getElementById('entregado_a').value;
- var recibev = document.getElementById('recibe_alm').value;
+
  var notav = document.getElementById('factura').value;
  var preciou = document.getElementById('preciou').value;
  var ivax = document.getElementById('iva').value * .010;
  var iepsx = document.getElementById('ieps').value  * .010;
 
  
- if( provedorv !== "" && empresav !=="" &&entregadov !=="" && recibev!=="" && notav!=="" && preciou!=="" && ivax !== ""){
+ if( provedorv !== "" && empresav !=="" && notav!=="" && preciou!=="" && ivax !== ""){
    if (preciou > 0){
      document.getElementById("errorprecio").innerHTML = "";
      var select=document.getElementById('id_materialk');
@@ -616,8 +619,7 @@ function llenado(){
     //alert(var3);
     var prove = document.getElementById("prov");
     var proved = prove.value;
-    var recibiox = document.getElementById("recibio");
-    var recibe = recibiox.value;
+
     //alert(recibe);
     var notax = document.getElementById("factura");
     var notas = notax.value;

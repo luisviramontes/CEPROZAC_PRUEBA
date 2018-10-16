@@ -87,10 +87,10 @@
      <div class="form-group">
       <label class="col-sm-3 control-label">Entregado a : <strog class="theme_color">*</strog></label>
       <div class="col-sm-6">
-        <select name="entregado_a" id="entregado_a" value=""  class="form-control select2" required>  
-          @foreach($empleado as $emp)
-          <option value="{{$emp->id}}">
-           {{$emp->nombre}} {{$emp->apellidos}} 
+        <select name="entrega"   class="form-control select2" required>  
+          @foreach($empleado as $emp1)
+          <option value="{{$emp1->id}}">
+           {{$emp1->nombre}} {{$emp1->apellidos}} 
          </option>
          @endforeach              
        </select>
@@ -102,10 +102,10 @@
    <div class="form-group">
     <label class="col-sm-3 control-label">Recibe en Almacén CEPROZAC : <strog class="theme_color">*</strog></label>
     <div class="col-sm-6">
-      <select name="recibe_alm" id="recibe_alm" value=""  class="form-control select2" required>  
-        @foreach($empleado as $emp)
-        <option value="{{$emp->id}}">
-         {{$emp->nombre}} {{$emp->apellidos}} 
+      <select name="recibe" class="form-control select2" required>  
+        @foreach($empleado as $emp2)
+        <option value="{{$emp2->id}}">
+         {{$emp2->nombre}} {{$emp2->apellidos}}
        </option>
        @endforeach              
      </select>
@@ -136,16 +136,6 @@
   </div>
 </div>
 
-<div class="form-group"> 
-  <label class="col-sm-3 control-label">% IVA<strog class="theme_color">* </strog></label>
-  <div class="col-sm-3">
-    <input name="iva" id="iva" value="0" type="text" class="form-control" min="0" max="100" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IVA del Producto" />
-  </div>    
-  <label class="col-sm-1 control-label">% IEPS<strog class="theme_color">* </strog></label>
-  <div class="col-sm-3">
-    <input name="ieps" id="ieps" value="0" type="text" class="form-control" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IEPS del Producto" />
-  </div> 
-</div>
 
 <div class="form-group">
  <label class="col-sm-3 control-label">Tipo de Moneda: <strog class="theme_color">*</strog></label>
@@ -226,6 +216,21 @@
         <span id="errorprecio" style="color:#FF0000;"></span>
       </div>    
     </div>    
+          <div class="col-sm-1">
+       <div class="form-group"> 
+        <label for="preciou">% IVA </label>
+         <input name="iva" id="iva" value="0" type="text" class="form-control" min="0" max="100" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IVA del Producto" />
+        <span id="errorprecio" style="color:#FF0000;"></span>
+      </div>    
+    </div>   
+              <div class="col-sm-1">
+       <div class="form-group"> 
+        <label for="preciou">% IEPS </label>
+       <input name="ieps" id="ieps" value="0" type="text" class="form-control" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IEPS del Producto" />
+        <span id="errorprecio" style="color:#FF0000;"></span>
+      </div>    
+    </div>   
+
 
 
   </div>
@@ -522,15 +527,12 @@ function llenado(){
   cantidadaux=arregloDeSubCadenas[2];
 
 
-  var provedorv =  document.getElementById('prov').value;
-  var empresav =  document.getElementById('recibio').value;
-  var entregadov = document.getElementById('entregado_a').value;
-  var recibev = document.getElementById('recibe_alm').value;
+
   var notav = document.getElementById('factura').value;
   var preciou = document.getElementById('preciou').value;
   var ivax = document.getElementById('iva').value * .010;
   var iepsx = document.getElementById('ieps').value  * .010;
-  if(provedorv !== "" && empresav !=="" &&entregadov !=="" && recibev!=="" && notav!=="" && preciou!=="" && ivax !== ""){
+  if(notav!=="" && preciou!=="" && ivax !== ""){
    if (preciou > 0){
      document.getElementById("errorprecio").innerHTML = "";
 

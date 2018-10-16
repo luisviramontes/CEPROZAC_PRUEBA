@@ -15,7 +15,7 @@
 </div>
 <div class="container clear_both padding_fix">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12"> 
       <div class="block-web">
         <div class="header">
           <div class="row" style="margin-top: 15px; margin-bottom: 12px;">
@@ -87,7 +87,7 @@
      <div class="form-group">
       <label class="col-sm-3 control-label">Entregado a : <strog class="theme_color">*</strog></label>
       <div class="col-sm-6">
-        <select name="entregado_a" id="entregado_a" value=""  class="form-control select2" required>  
+        <select name="entrega" id="entrega"  class="form-control select2" required>  
           @foreach($empleado as $emp)
           <option value="{{$emp->id}}">
            {{$emp->nombre}} {{$emp->apellidos}} 
@@ -102,7 +102,7 @@
    <div class="form-group">
     <label class="col-sm-3 control-label">Recibe en Almacén CEPROZAC : <strog class="theme_color">*</strog></label>
     <div class="col-sm-6">
-      <select name="recibe_alm" id="recibe_alm" value=""  class="form-control select2" required>  
+      <select name="recibe" id="recibe"   class="form-control select2" required>  
         @foreach($empleado as $emp)
         <option value="{{$emp->id}}">
          {{$emp->nombre}} {{$emp->apellidos}} 
@@ -130,18 +130,12 @@
     $x = $errors->formulario->first('factura');
     $y =Input::old('factura');
     ?>
-    @if ( $x != "")
+    @if ( $x != "") 
     <a class="btn btn-primary btn-sm" href="{{URL::action('EntradasAlmacenLimpiezaController@show',$y)}}"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Factura"> <i class="fa fa-edit"></i> Modificar Factura </a>
     @endif
   </div>
 </div>
 
-<div class="form-group"> 
-  <label class="col-sm-3 control-label">% IVA<strog class="theme_color">* </strog></label>
-  <div class="col-sm-3">
-    <input name="iva" id="iva" value="0" type="text" class="form-control" min="0" max="100" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IVA del Producto" />
-  </div>    
-</div>
 
 <div class="form-group">
  <label class="col-sm-3 control-label">Tipo de Moneda: <strog class="theme_color">*</strog></label>
@@ -222,6 +216,14 @@
         <span id="errorprecio" style="color:#FF0000;"></span>
       </div>    
     </div>    
+
+              <div class="col-sm-1">
+       <div class="form-group"> 
+        <label for="preciou">% IVA </label>
+         <input name="iva" id="iva" value="0" type="text" class="form-control" min="0" max="100" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IVA del Producto" />
+        <span id="errorprecio" style="color:#FF0000;"></span>
+      </div>    
+    </div>   
 
 
   </div>
@@ -518,12 +520,11 @@ function llenado(){
 
   var provedorv =  document.getElementById('prov').value;
   var empresav =  document.getElementById('recibio').value;
-  var entregadov = document.getElementById('entregado_a').value;
-  var recibev = document.getElementById('recibe_alm').value;
+
   var notav = document.getElementById('factura').value;
   var preciou = document.getElementById('preciou').value;
   var ivax = document.getElementById('iva').value * .010;
-  if(provedorv !== "" && empresav !=="" &&entregadov !=="" && recibev!=="" && notav!=="" && preciou!=="" && ivax !== ""){
+  if(provedorv !== "" && empresav !==""  && notav!=="" && preciou!=="" && ivax !== ""){
    if (preciou > 0){
      document.getElementById("errorprecio").innerHTML = "";
 

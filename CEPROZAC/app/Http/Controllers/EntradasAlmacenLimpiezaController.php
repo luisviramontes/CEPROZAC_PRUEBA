@@ -23,7 +23,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use PHPExcel_Worksheet_Drawing;
 use Validator; 
 use \Milon\Barcode\DNS1D;
-use \Milon\Barcode\DNS2D;
+use \Milon\Barcode\DNS2D; 
 use Illuminate\Support\Collection as Collection; 
 class entradasalmacenlimpiezaController extends Controller
 {
@@ -117,11 +117,11 @@ class entradasalmacenlimpiezaController extends Controller
         $material->factura=$formulario->get('factura');
         $material->comprador=$formulario->get('recibio');
         $material->moneda=$formulario->get('moneda');
-        $material->entregado=$formulario->get('entregado_a');
-        $material->recibe_alm=$formulario->get('recibe_alm');
+        $material->entregado=$formulario->get('entrega');
+        $material->recibe_alm=$formulario->get('recibe');
         $material->observacionesc=$formulario->get('observacionesq');
         $material->estado="Activo";
-        $material->save();
+        $material->save(); 
 
         $ultimo = entradasalmacenlimpieza::orderBy('id', 'desc')->first()->id;
         $num = 1;
@@ -195,7 +195,7 @@ class entradasalmacenlimpiezaController extends Controller
      ->join('almacenlimpieza as a', 'detalle_entradas_limpieza.id_material', '=', 'a.id')
      ->select('a.idUnidadMedida')
      ->join('unidades_medidas as u', 'a.idUnidadMedida', '=', 'u.id')
-     ->select('u.idUnidadMedida')
+     ->select('u.idUnidadMedida') 
      ->join('nombre_unidades_medidas as n', 'u.idUnidadMedida', '=', 'n.id')
      ->join('entradasalmacenlimpieza as e', 'detalle_entradas_limpieza.idEntradaLimpieza', '=', 'e.id')
      ->select('detalle_entradas_limpieza.*','e.*','a.nombre as nombreMaterial','u.cantidad as cantidadUnidad','n.nombreUnidadMedida as nombreUnidadMedida','u.nombre as UnidadNombre')
@@ -209,7 +209,7 @@ class entradasalmacenlimpiezaController extends Controller
      ->select('u.idUnidadMedida')
      ->join('nombre_unidades_medidas as n', 'u.idUnidadMedida', '=', 'n.id')
      ->join('entradasalmacenlimpieza as e', 'detalle_entradas_limpieza.idEntradaLimpieza', '=', 'e.id')
-     ->select('detalle_entradas_limpieza.*','e.*','a.nombre as nombreMaterial','u.cantidad as cantidadUnidad','n.nombreUnidadMedida as nombreUnidadMedida')
+     ->select('detalle_entradas_limpieza.*','e.*','a.nombre as nombreMaterial','u.cantidad as cantidadUnidad','n.nombreUnidadMedida as nombreUnidadMedida','detalle_entradas_limpieza.idEntradaLimpieza as IdEntrada')
      ->where('e.factura','=',$factura)->first(); 
 
         // 
@@ -279,8 +279,8 @@ class entradasalmacenlimpiezaController extends Controller
       $material->factura=$request->get('factura');
       $material->comprador=$request->get('recibio');
       $material->moneda=$request->get('moneda');
-      $material->entregado=$request->get('entregado_a');
-      $material->recibe_alm=$request->get('recibe_alm');
+      $material->entregado=$request->get('entrega');
+      $material->recibe_alm=$request->get('recibe');
       $material->observacionesc=$request->get('observacionesq');
       $material->update();
 

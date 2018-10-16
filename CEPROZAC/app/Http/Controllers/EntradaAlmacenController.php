@@ -107,6 +107,7 @@ class EntradaAlmacenController extends Controller
     
     public function store(EntradasMaterialesRequest $formulario)
     {
+
      $cantidad = $formulario->get('cantidad2');
 
 
@@ -119,7 +120,7 @@ class EntradaAlmacenController extends Controller
       if ($formulario->ajax()){
         return response()->json(["valid" => true], 200);
       }
-      else{
+      else{ 
 
         $material= new EntradaAlmacen;
         $material->provedor=$formulario->get('prov');
@@ -127,8 +128,8 @@ class EntradaAlmacenController extends Controller
         $material->factura=$formulario->get('factura');
         $material->comprador=$formulario->get('recibio');
         $material->moneda=$formulario->get('moneda');
-        $material->entregado=$formulario->get('entregado_a');
-        $material->recibe_alm=$formulario->get('recibe_alm');
+        $material->entregado=$formulario->get('entregado');
+        $material->recibe_alm=$formulario->get('recibe');
         $material->observacionesc=$formulario->get('observacionesq');
         $material->estado="Activo";
         $material->save();
@@ -182,7 +183,7 @@ class EntradaAlmacenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($factura)
     {
       $material=DB::table('almacenmateriales')->where('almacenmateriales.estado','=' ,'Activo')->where('almacenmateriales.cantidad','>=','0')
       ->join('unidades_medidas as u', 'almacenmateriales.idUnidadMedida', '=', 'u.id')
@@ -204,7 +205,7 @@ class EntradaAlmacenController extends Controller
       ->join('unidades_medidas as u', 'a.idUnidadMedida', '=', 'u.id')
       ->select('u.idUnidadMedida')
       ->join('nombre_unidades_medidas as n', 'u.idUnidadMedida', '=', 'n.id')
-      ->join('entradasalmacenmateriales as e', 'detalle_entradas_materiales.idEntradaMaterial', '=', 'e.id')
+      ->join('entradaalmacenmateriales as e', 'detalle_entradas_materiales.idEntradaMaterial', '=', 'e.id')
       ->select('detalle_entradas_materiales.*','e.*','a.nombre as nombreMaterial','u.cantidad as cantidadUnidad','n.nombreUnidadMedida as nombreUnidadMedida','u.nombre as UnidadNombre')
       ->where('e.factura','=',$factura)->get(); 
 
@@ -215,7 +216,7 @@ class EntradaAlmacenController extends Controller
       ->join('unidades_medidas as u', 'a.idUnidadMedida', '=', 'u.id')
       ->select('u.idUnidadMedida')
       ->join('nombre_unidades_medidas as n', 'u.idUnidadMedida', '=', 'n.id')
-      ->join('entradasalmacenmateriales as e', 'detalle_entradas_materiales.idEntradaMaterial', '=', 'e.id')
+      ->join('entradaalmacenmateriales as e', 'detalle_entradas_materiales.idEntradaMaterial', '=', 'e.id')
       ->select('detalle_entradas_materiales.*','e.*','a.nombre as nombreMaterial','u.cantidad as cantidadUnidad','n.nombreUnidadMedida as nombreUnidadMedida')
       ->where('e.factura','=',$factura)->first(); 
 
@@ -287,11 +288,11 @@ class EntradaAlmacenController extends Controller
       $material->factura=$request->get('factura');
       $material->comprador=$request->get('recibio');
       $material->moneda=$request->get('moneda');
-      $material->entregado=$request->get('entregado_a');
-      $material->recibe_alm=$request->get('recibe_alm');
+      $material->entregado=$request->get('entrega');
+      $material->recibe_alm=$request->get('recibe');
       $material->observacionesc=$request->get('observacionesq');
       $material->update();
-
+ 
       $entradas=DB::table('detalle_entradas_materiales')->where('idEntradaMaterial','=',$id)->get();
       $cuenta = count($entradas);
 

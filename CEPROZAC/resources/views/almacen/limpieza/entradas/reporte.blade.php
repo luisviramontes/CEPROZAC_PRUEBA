@@ -8,7 +8,7 @@
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
-			<li ><a style="color: #808080" href="{{url('/almacen/salidas/limpieza')}}">Inicio</a></li>
+			<li ><a style="color: #808080" href="{{url('/almacen/entradas/limpieza')}}">Inicio</a></li>
 			<li class="active">Reporte de Entrada de Almacén de Limpieza</a></li>
 		</ol>
 	</div>

@@ -116,8 +116,8 @@ class entradasempaquescontroller extends Controller
           $material->factura=$formulario->get('factura');
           $material->comprador=$formulario->get('recibio');
           $material->moneda=$formulario->get('moneda');
-          $material->entregado=$formulario->get('entregado_a');
-          $material->recibe_alm=$formulario->get('recibe_alm');
+          $material->entregado=$formulario->get('entrega');
+          $material->recibe_alm=$formulario->get('recibe');
           $material->observacionesc=$formulario->get('observacionesq');
           $material->estado="Activo";
           $material->save();
@@ -174,7 +174,7 @@ class entradasempaquescontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($factura)
     {
      $material=DB::table('almacenempaque')->where('almacenempaque.estado','=' ,'Activo')->where('almacenempaque.cantidad','>=','0')
      ->join('unidades_medidas as u', 'almacenempaque.idUnidadMedida', '=', 'u.id')
@@ -210,7 +210,7 @@ class entradasempaquescontroller extends Controller
      ->join('unidades_medidas as u', 'a.idUnidadMedida', '=', 'u.id')
      ->join('nombre_unidades_medidas as n', 'u.idUnidadMedida', '=', 'n.id')
      ->join('entradasempaques as e', 'detalle_entradas_empaques.idEntradaMaterial', '=', 'e.id')
-     ->select('detalle_entradas_empaques.*','e.*','f.formaEmpaque as nombreMaterial','u.cantidad as cantidadUnidad','n.nombreUnidadMedida as nombreUnidadMedida','u.nombre as UnidadNombre')
+     ->select('detalle_entradas_empaques.*','e.*','e.id as IdEntrada','f.formaEmpaque as nombreMaterial','u.cantidad as cantidadUnidad','n.nombreUnidadMedida as nombreUnidadMedida','u.nombre as UnidadNombre')
      ->where('e.factura','=',$factura)->first();
 
 
@@ -288,8 +288,8 @@ class entradasempaquescontroller extends Controller
      $material->factura=$request->get('factura');
      $material->comprador=$request->get('recibio');
      $material->moneda=$request->get('moneda');
-     $material->entregado=$request->get('entregado_a');
-     $material->recibe_alm=$request->get('recibe_alm');
+     $material->entregado=$request->get('entrega');
+     $material->recibe_alm=$request->get('recibe');
      $material->observacionesc=$request->get('observacionesq');
      $material->update();
 

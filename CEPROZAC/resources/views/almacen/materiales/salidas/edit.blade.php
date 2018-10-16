@@ -5,14 +5,14 @@
   <div class="pull-left page_title theme_color">
 
     <h1>Inicio</h1>
-    <h2 class="">Almacén de Limpieza</h2>
+    <h2 class="">Almacén de Material</h2>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </div>
   <div class="pull-right">
     <ol class="breadcrumb">
-      <li><a style="color: #808080" href="{{url('almacenes/limpieza')}}">Inicio</a></li>
-      <li><a style="color: #808080" href="{{url('almacen/salidas/limpieza')}}">Salidas de Almacén de Limpieza</a></li>
+      <li><a style="color: #808080" href="{{url('almacen/materiales')}}">Inicio</a></li>
+      <li><a style="color: #808080" href="{{url('almacen/salidas/material')}}">Salidas de Almacén de Material</a></li>
     </ol>
   </div>
 </div> 
@@ -24,7 +24,7 @@
           <div class="row" style="margin-top: 15px; margin-bottom: 12px;">
             <div class="col-sm-8">
               <div class="actions"> </div>
-              <h2 class="content-header" style="margin-top: -5px;"><strong>Editar Salida de Limpieza: {{$salida->idSalida}} </strong></h2>
+              <h2 class="content-header" style="margin-top: -5px;"><strong>Editar Salida de Material: {{$salida->idSalida}} </strong></h2>
             </div>
 
             <div class="col-md-4">
@@ -42,9 +42,9 @@
          <div class="text-success" id='result'>
           @if(Session::has('message'))
           {{Session::get('message')}}
-          @endif
-        </div>
-        <form action="{{url('/almacen/salidas/limpieza', [$salida->idSalida])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
+          @endif 
+        </div> 
+        <form action="{{url('/almacen/salidas/material', [$salida->idSalida])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
           {{csrf_field()}}
           <input type="hidden" name="_method" value="PUT">
 
@@ -107,14 +107,14 @@
         <label class="col-sm-3 control-label">Destino : <strog class="theme_color">*</strog></label>
         <div class="col-sm-6">
           <select name="destino" id="destino"   class="form-control select2" >  
-            @foreach($limpieza as $limp)
+            @foreach($almacen as $limp)
             @if ($limp->nombre == $salida->destino)
             <option value="{{$limp->nombre}}" selected>{{$limp->nombre}} </option>
             @else
             <option value="{{$limp->nombre}}">{{$limp->nombre}} </option>
             @endif
             @endforeach              
-          </select>
+          </select> 
           <div class="help-block with-errors"></div>
         </div>
       </div> 
@@ -291,7 +291,7 @@
 <div class="form-group">
   <div class="col-sm-offset-7 col-sm-5">
     <button type="submit" onclick="return save();" class="btn btn-primary">Guardar</button>
-    <a href="{{url('/almacen/salidas/limpieza')}}" class="btn btn-default"> Cancelar</a>
+    <a href="{{url('/almacen/salidas/material')}}" class="btn btn-default"> Cancelar</a>
   </div>
 </div><!--/form-group-->
 </form>

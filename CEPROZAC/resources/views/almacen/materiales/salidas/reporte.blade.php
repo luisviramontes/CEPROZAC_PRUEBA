@@ -4,12 +4,12 @@
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Inicio</h1>
-		<h2 class="">Salidas Limpieza</h2>
+		<h2 class="">Salidas Material</h2>
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
-			<li ><a style="color: #808080" href="{{url('/almacen/salidas/limpieza')}}">Inicio</a></li>
-			<li class="active">Reporte de Salida de Almacén de Limpieza</a></li>
+			<li ><a style="color: #808080" href="{{url('/almacen/salidas/material')}}">Inicio</a></li>
+			<li class="active">Reporte de Salida de Almacén de Material</a></li>
 		</ol>
 	</div>
 </div>
@@ -27,11 +27,11 @@
 							<b>
 
 								<div class="btn-group" style="margin-right: 10px;">
-									 <a class="btn btn-sm btn-success tooltips" href="{{ route('almacen.salidas.limpieza.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Salida"> <i class="fa fa-plus"></i> Registrar Salida de Almacén</a>
+									 <a class="btn btn-sm btn-success tooltips" href="{{ route('almacen.salidas.material.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Salida"> <i class="fa fa-plus"></i> Registrar Salida de Almacén</a>
 
-									<a class="btn btn-sm btn-danger tooltips" href="/almacen/salidas/limpieza" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-times"></i> Salir</a>
+									<a class="btn btn-sm btn-danger tooltips" href="/almacen/salidas/material" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-times"></i> Salir</a>
 
-									<a class="btn btn-sm btn btn-info" href="{{URL::action('SalidasAlmacenLimpiezaController@pdfentradamaterial',$salidas->idSalida)}}" target="_blank" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Entrada"> <i class="fa fa-print"></i>Imprimir Reporte</a>
+									<a class="btn btn-sm btn btn-info" href="{{URL::action('SalidaAlmacenMaterialController@pdfsalidamaterial',$salidas->idSalida)}}" target="_blank" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Entrada"> <i class="fa fa-print"></i>Imprimir Reporte</a>
 
 								</div> 
 							</b>
