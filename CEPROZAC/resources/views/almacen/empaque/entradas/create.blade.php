@@ -216,13 +216,15 @@
         <span id="errorprecio" style="color:#FF0000;"></span>
       </div>    
     </div>    
-              <div class="col-sm-1">
-       <div class="form-group"> 
-        <label for="preciou">% IVA </label>
-         <input name="iva" id="iva" value="0" type="text" class="form-control" min="0" max="100" onkeypress=" return soloNumeros(event);" placeholder="Ingrese el % IVA del Producto" />
-        <span id="errorprecio" style="color:#FF0000;"></span>
-      </div>    
-    </div>   
+
+                     <div class="form-group">
+        <label class="col-sm-1 control-label">% IVA: <strog class="theme_color">*</strog></label>
+        <div class="col-sm-3">
+          <input type="radio" name="iva" id="iva"  onchange="obtener_iva(16)"  value="16" checked> SI<br>
+          <input type="radio" name="iva" id="iva"  onchange="obtener_iva(0)"  value="0" > NO<br>
+        </div>
+      </div><!--/form-group-->
+ 
 
 
   </div>
@@ -371,7 +373,7 @@
       var value = e.options[e.selectedIndex=i].value;
       var text = e.options[e.selectedIndex=i].text;
       var cantidadtotal = value;
-      limite = "8",
+      limite = "9",
       separador = "_",
       arregloDeSubCadenas = cantidadtotal.split(separador, limite);
       stock=arregloDeSubCadenas[0];
@@ -381,6 +383,8 @@
       medida=arregloDeSubCadenas[5];
       nombreUnidad=arregloDeSubCadenas[6];
       UnidadP=arregloDeSubCadenas[7];
+       cantidadMedida=arregloDeSubCadenas[8];
+
       tecla=(document.all) ? event.keyCode : event.which;
       if (codigo == x){
         swal("Producto Encontrado:"+nombre +"!", "Stock de Entrada!", "success",{content: "input", inputType:"number",}).then((value) => {
@@ -392,7 +396,7 @@
 
         document.getElementById('id_materialk').selectedIndex = i;
         document.getElementById("descripcion").value=descripcion;
-        document.getElementById("unidadAux").value=nombreUnidad;
+         document.getElementById("unidadAux").value=nombreUnidad.concat(" DE ",cantidadMedida," ",UnidadP);
                 obtenerSelect(UnidadP);
         break;
       }
@@ -413,7 +417,7 @@ window.onload=function() {
   var select2 = document.getElementById('id_materialk');
   var selectedOption2 = select2.selectedIndex;
   var cantidadtotal = select2.value;
-  limite = "8",
+  limite = "9",
   separador = "_",
   arregloDeSubCadenas = cantidadtotal.split(separador, limite);
   stock=arregloDeSubCadenas[0];
@@ -421,9 +425,10 @@ window.onload=function() {
   medida=arregloDeSubCadenas[5];
   nombreUnidad=arregloDeSubCadenas[6];
   UnidadP=arregloDeSubCadenas[7];
+  cantidadMedida=arregloDeSubCadenas[8];
  // document.getElementById("pcantidad").value=stock;
  document.getElementById("descripcion").value=descripcion;
- document.getElementById("unidadAux").value=nombreUnidad;
+ document.getElementById("unidadAux").value=nombreUnidad.concat(" DE ",cantidadMedida," ",UnidadP);
  document.getElementById("codigo").select();
   // <option value="{{$mat->cantidad}}_{{$mat->descripcion}}_{{$mat->codigo}}_{{$mat->id}}_{{$mat->nombre}}_{{$mat->idUnidadMedida}}">
   obtenerSelect(UnidadP);
@@ -437,7 +442,7 @@ var select = document.getElementById('id_materialk');
      // alert(selectedOption.value);
    //   console.log(selectedOption.value + ': ' + selectedOption.text);
    var cantidadtotal = selectedOption.value;
-   limite = "8",
+   limite = "9",
    separador = "_",
    arregloDeSubCadenas = cantidadtotal.split(separador, limite);
    stock=arregloDeSubCadenas[0];
@@ -445,12 +450,13 @@ var select = document.getElementById('id_materialk');
    medida=arregloDeSubCadenas[5];
    nombreUnidad=arregloDeSubCadenas[6];
    UnidadP=arregloDeSubCadenas[7];
+    cantidadMedida=arregloDeSubCadenas[8];
    // id_materiales=arregloDeSubCadenas[3];
 
   // console.log(arregloDeSubCadenas); 
  // document.getElementById("pcantidad").value=stock;
  document.getElementById("descripcion").value=descripcion;
- document.getElementById("unidadAux").value=nombreUnidad;
+document.getElementById("unidadAux").value=nombreUnidad.concat(" DE ",cantidadMedida," ",UnidadP);
  obtenerSelect(UnidadP);
 
 
@@ -843,6 +849,13 @@ function obtenerSelect(valor) {
 
 }
 
+function obtener_iva(value){
+if(value == "0"){
+document.getElementById('iva').value=value;
+}else{
+document.getElementById('iva').value=value;
+}
+}
 </script>
 
 @endsection

@@ -295,7 +295,7 @@
       var value = e.options[e.selectedIndex=i].value;
       var text = e.options[e.selectedIndex=i].text;
       var cantidadtotal = value;
-      limite = "8",
+      limite = "9",
       separador = "_",
       arregloDeSubCadenas = cantidadtotal.split(separador, limite);
       stock=arregloDeSubCadenas[0];
@@ -305,6 +305,8 @@
       medida=arregloDeSubCadenas[5];
       nombreUnidad=arregloDeSubCadenas[6];
       UnidadP=arregloDeSubCadenas[7];
+             cantidadMedida=arregloDeSubCadenas[8];
+             
       tecla=(document.all) ? event.keyCode : event.which;
       if (codigo == x){
         swal("Producto Encontrado:"+nombre +"!", "Stock de Entrada!", "success",{content: "input", inputType:"number",}).then((value) => {
@@ -316,7 +318,7 @@
         document.getElementById("cantidadp").value=stock;
         document.getElementById('id_materialk').selectedIndex = i;
         document.getElementById("descripcion").value=descripcion;
-        document.getElementById("unidadAux").value=nombreUnidad;
+        document.getElementById("unidadAux").value=nombreUnidad.concat(" DE ",cantidadMedida," ",UnidadP);
         obtenerSelect(UnidadP);
         break;
       }
@@ -336,7 +338,7 @@ window.onload=function() {
   var select2 = document.getElementById('id_materialk');
   var selectedOption2 = select2.selectedIndex;
   var cantidadtotal = select2.value;
-  limite = "8",
+  limite = "9",
   separador = "_",
   arregloDeSubCadenas = cantidadtotal.split(separador, limite);
   stock=arregloDeSubCadenas[0];
@@ -344,9 +346,10 @@ window.onload=function() {
   medida=arregloDeSubCadenas[5];
   nombreUnidad=arregloDeSubCadenas[6];
   UnidadP=arregloDeSubCadenas[7];
+  cantidadMedida=arregloDeSubCadenas[8];
   document.getElementById("cantidadp").value=stock;
   document.getElementById("descripcion").value=descripcion;
-  document.getElementById("unidadAux").value=nombreUnidad;
+  document.getElementById("unidadAux").value=nombreUnidad.concat(" DE ",cantidadMedida," ",UnidadP);
   document.getElementById("codigo").select();
   // <option value="{{$mat->cantidad}}_{{$mat->descripcion}}_{{$mat->codigo}}_{{$mat->id}}_{{$mat->nombre}}_{{$mat->idUnidadMedida}}">
   obtenerSelect(UnidadP);
@@ -359,7 +362,7 @@ var select2 = document.getElementById('id_materialk');
       var selectedOption = this.options[select2.selectedIndex];
    //   console.log(selectedOption.value + ': ' + selectedOption.text);
    var cantidadtotal = selectedOption.value;
-   limite = "8",
+   limite = "9",
    separador = "_",
    arregloDeSubCadenas = cantidadtotal.split(separador, limite);
    stock=arregloDeSubCadenas[0];
@@ -367,13 +370,14 @@ var select2 = document.getElementById('id_materialk');
    medida=arregloDeSubCadenas[5];
    nombreUnidad=arregloDeSubCadenas[6];
    UnidadP=arregloDeSubCadenas[7];
+   cantidadMedida=arregloDeSubCadenas[8];
    // id_materiales=arregloDeSubCadenas[3];
 
   // console.log(arregloDeSubCadenas); 
  // document.getElementById("pcantidad").value=stock;
  document.getElementById("cantidadp").value=stock;
  document.getElementById("descripcion").value=descripcion;
- document.getElementById("unidadAux").value=nombreUnidad;
+document.getElementById("unidadAux").value=nombreUnidad.concat(" DE ",cantidadMedida," ",UnidadP);
  obtenerSelect(UnidadP);
 
 

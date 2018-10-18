@@ -488,7 +488,7 @@ class EntradaAlmacenController extends Controller
         $CantidadInferior=floor($CantidadInf);
         $auxCantidadInf= $CantidadInferior * 1000;
         $sub2=$sub-$auxCantidadInf;//se obtienen los gramos,centimetos o litros
-        $cantidad=$aux." ".$Unombre;
+        $cantidad=$aux." ".$Unombre." DE ".$Valor." ".$Nombre ;
         }elseif ($Nombre == "UNIDADES") {
         $cantidad=$Cantidad." ".$Unombre;
           # code...
